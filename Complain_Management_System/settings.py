@@ -36,10 +36,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.static',
+    # 'django.contrib.static',
     'users',
     'crispy_forms',
     'complaints',
+    'django.contrib.staticfiles'
 ]
 
 MIDDLEWARE = [
@@ -122,10 +123,8 @@ USE_TZ = True
 
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, "static"),
-#     '/CMS_Project/Complain_Management_System/users/static/users/',
-#     'H:/codes/trydjango/CMS_Project/Complain_Management_System/users/static/users/'
-#     # '/CMS_Project/Complain_Management_System/complaints/static/complaints/',
 # ]
+
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
