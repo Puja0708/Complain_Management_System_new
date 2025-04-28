@@ -161,6 +161,15 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # twillio/ sendgrid code : YPMMHZ54U2CS2Q4R4HQCLUU1
 
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
+
+SENDGRID_API_KEY = env('SENDGRID_API_KEY')
+
+print("API KEY", SENDGRID_API_KEY)
+
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 SENDGRID_API_KEY = "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"
 

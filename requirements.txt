@@ -8,3 +8,4 @@ pytz==2019.3
 sqlparse==0.3.1
 wheel==0.45.1
 sendgrid==6.11.0
+django-environ==0.12.0
