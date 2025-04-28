@@ -171,7 +171,7 @@ SENDGRID_API_KEY = env('SENDGRID_API_KEY')
 print("API KEY", SENDGRID_API_KEY)
 
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
-SENDGRID_API_KEY = "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"
+SENDGRID_API_KEY = SENDGRID_API_KEY
 
 # Optional settings:
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False  # Set to True to simulate email sending while developing
