@@ -25,7 +25,7 @@ SECRET_KEY = '3_ly7xiokc^$h%uq6uq1_kqpmo7b6_ni4a&enz9(*fp*o1d+1n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['complain-management-system-new-1.onrender.com', '*render.com']
 
 
 # Application definition
