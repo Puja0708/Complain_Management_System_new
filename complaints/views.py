@@ -9,7 +9,26 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .models import Complaint, Feedback
 from .forms import FeedbackForm
 from users.models import Employee
+from django.core.mail import send_mail
 
+FROM_EMAIL = "talktopujas@gmail.com"  # random
+SUBJECT = "Complaint Number : {}"
+BODY_NEW_COMPLAINT = "A new complaint with number : {} has been registered with our system. Status {}."
+BODY_UPDATE_COMPLAINT = "Status of complaing number : {} changed to : {}."
+
+def send_email(from_email, to_email, complaint_number, complaint_status, is_new = True):
+    print(from_email, to_email)
+    from_email = FROM_EMAIL
+    subject = SUBJECT.format(complaint_number)
+    recipient_list = [to_email]
+
+    body_template =  BODY_NEW_COMPLAINT if is_new else BODY_UPDATE_COMPLAINT
+    body = body_template.format(complaint_number, complaint_status)
+    try:
+        send_mail(subject, body, from_email, recipient_list)
+        print("email sent")
+    except:
+        print("could not send email")
 
 @login_required
 def complaint_list(request):
@@ -93,6 +112,7 @@ def status_change(request, pk):
         complaint.status = 1
         complaint.save()
     print()
+    send_email(FROM_EMAIL, complaint.user.email, complaint.id, complaint.status, False)
     return HttpResponseRedirect(complaint.get_absolute_url())
 
 class ComplaintCreateView(LoginRequiredMixin, CreateView):
@@ -102,7 +122,11 @@ class ComplaintCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user_id = self.request.user
-        return super().form_valid(form)
+        to_email = self.request.user.email
+        response = super().form_valid(form)
+        complaint = form.instance
+        send_email(FROM_EMAIL, to_email, complaint.id, complaint.status, True)
+        return response
 
 
 class ComplaintUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

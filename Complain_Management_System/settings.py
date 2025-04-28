@@ -25,7 +25,7 @@ SECRET_KEY = '3_ly7xiokc^$h%uq6uq1_kqpmo7b6_ni4a&enz9(*fp*o1d+1n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['complain-management-system-new-1.onrender.com', '*render.com']
+ALLOWED_HOSTS = ['complain-management-system-new-1.onrender.com', '*render.com', '127.0.0.1']
 
 
 # Application definition
@@ -142,3 +142,28 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
     "https://complain-management-system-new-1.onrender.com"
 ]
+
+# EMAIL config
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# SMTP Server details
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+
+# Sender email credentials
+EMAIL_HOST_USER = 'talktopujas@gmail.com'     # Your Gmail address
+# EMAIL_HOST_PASSWORD = 'your_app_password'    # Your Gmail App Password (see below)
+
+# Default from address
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# twillio/ sendgrid code : YPMMHZ54U2CS2Q4R4HQCLUU1
+
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+SENDGRID_API_KEY = "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"
+
+# Optional settings:
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False  # Set to True to simulate email sending while developing
+SENDGRID_TRACK_EMAIL_OPENS = False
